@@ -38,10 +38,14 @@ php artisan serve --port=8818 --host=0.0.0.0
 使用docker-compose部署
 
 ```
-$ cd docker
-$ docker-compose up -d
+cd docker && docker-compose up -d
 ```
-等待n秒后即可访问 [http://127.0.0.1:8818](http://127.0.0.1:8818)
+等待 ```N``` 秒后即可访问 [http://127.0.0.1:8818](http://127.0.0.1:8818)
+
+## 说明
+
+本程序仅供学习交流使用，请勿用于商业用途。   
+本程序依懒于 [某球] 网站api，如果api失效，可以联系作者更换api。
 
 ## 参与
 
