@@ -35,7 +35,9 @@ php artisan serve --port=8818 --host=0.0.0.0
 
 ## docker
 
-使用docker-compose部署
+无需学习语言,环境即可使用   
+
+#### 使用 docker-compose 一健部署
 
 ```
 cd docker && docker-compose up -d
@@ -45,13 +47,13 @@ cd docker && docker-compose up -d
 ## 说明
 
 本程序仅供学习交流使用，请勿用于商业用途。   
-本程序依懒于 [某球] 网站api，如果api失效，可以联系作者更换api。
+本程序依懒于 [某球] api，如果api失效，可以联系作者更换api。
 
 ## 参与
 
-1. fork 当前库到你的名下
-2. 在你的本地修改完成审阅过后提交到你的仓库
-3. 提交 PR 并描述你的修改，等待合并
+1. fork 当前库到你的名下。
+2. 在你的本地修改完成审阅过后提交到你的仓库。
+3. 提交 PR 并描述你的修改，等待合并。
 
 ## License
 
