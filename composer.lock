@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "626b9e7ddd47fb7eff9aaa53cce0c9ad",
+    "content-hash": "179f9da4aede9847079c251298250813",
     "packages": [
         {
             "name": "brick/math",
@@ -5612,6 +5612,56 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "zyan/stock-api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aa24615/stock-api.git",
+                "reference": "a458d4de6b80918dcfe23811f48e4d522b5edb51"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aa24615/stock-api/zipball/a458d4de6b80918dcfe23811f48e4d522b5edb51",
+                "reference": "a458d4de6b80918dcfe23811f48e4d522b5edb51",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.18",
+                "phpunit/phpunit": "^9.5|^10|11"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zyan\\StockApi\\": "./src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "zyan",
+                    "email": "zyan@php127.com"
+                }
+            ],
+            "description": "股票api",
+            "keywords": [
+                "股票api"
+            ],
+            "support": {
+                "issues": "https://github.com/aa24615/stock-api/issues",
+                "source": "https://github.com/aa24615/stock-api/tree/dev-1.0.1"
+            },
+            "time": "2024-11-25T11:55:59+00:00"
         }
     ],
     "packages-dev": [
@@ -7835,12 +7885,14 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "zyan/stock-api": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
