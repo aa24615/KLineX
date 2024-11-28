@@ -53,7 +53,7 @@ return [
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
-            'prefix' => 'stock_',
+            'prefix' => 'st_',
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,

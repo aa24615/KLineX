@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('list', function (Blueprint $table) {
+        Schema::create('stock_list', function (Blueprint $table) {
             $table->id();
 
             $table->string('symbol',50)->default('')->comment('股票代码');
@@ -33,6 +33,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('list');
+        Schema::dropIfExists('stock_list');
     }
 };
