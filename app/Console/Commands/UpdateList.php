@@ -2,16 +2,17 @@
 
 namespace App\Console\Commands;
 
+use App\Services\StockListService;
 use Illuminate\Console\Command;
 
-class UpdateList extends Command
+class UpdateStockList extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'update:list';
+    protected $signature = 'update:stock_list type';
 
     /**
      * The console command description.
@@ -25,6 +26,11 @@ class UpdateList extends Command
      */
     public function handle()
     {
+        $type = $this->argument('type');
 
+        $stockListService = new StockListService();
+        $stockListService->update($type);
+
+        $this->info("ok");
     }
 }
