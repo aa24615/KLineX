@@ -74,8 +74,8 @@ class StockListService
             $stockList->current = $val['current'];
             $stockList->current_year_percent = $val['current_year_percent'];
             $stockList->percent = $val['percent'];
-            $stockList->volume = $val['volume'];
-            $stockList->amount = $val['amount'];
+            $stockList->volume = (float)$val['volume'];
+            $stockList->amount = (float)$val['amount'];
             $stockList->turnover_rate = $val['turnover_rate'];
             $stockList->pe_ttm = (float)$val['pe_ttm'];
             $stockList->dividend_yield = (float)$val['dividend_yield'];
