@@ -21,21 +21,27 @@ php composer.phar install
 php artisan migrate
 ```
 
-## 运行
+## http服务
 
 ```
 php artisan serve --port=8818 --host=0.0.0.0
 ```
 
-## 访问
-
-
 [http://127.0.0.1:8818](http://127.0.0.1:8818)
+
+
+## 任务调度
+
+其中包括股票数据更新等
+
+```
+php artisan schedule
+```
 
 
 ## docker
 
-无需学习语言,环境即可使用   
+无需学习语言,环境即可使用,运行后无需维护数据库,定时任务,队列等服务
 
 #### 使用 docker-compose 一健部署
 
