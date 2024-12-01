@@ -12,7 +12,7 @@ class UpdateStockList extends Command
      *
      * @var string
      */
-    protected $signature = 'update:stock_list type';
+    protected $signature = 'update:stock_list {type}';
 
     /**
      * The console command description.
@@ -26,6 +26,7 @@ class UpdateStockList extends Command
      */
     public function handle()
     {
+
         $type = $this->argument('type');
 
         $stockListService = new StockListService();
