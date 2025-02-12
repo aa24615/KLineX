@@ -1,5 +1,6 @@
 # yaml 配置实例
 version: '3'
+name: "stock"
 services:
   mysql:
     image: "mysql:8.4.3-oracle"

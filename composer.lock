@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "179f9da4aede9847079c251298250813",
+    "content-hash": "c7ff0781c6bfb1dfcf361c6d179d437b",
     "packages": [
         {
             "name": "brick/math",
@@ -5615,16 +5615,16 @@
         },
         {
             "name": "zyan/stock-api",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aa24615/stock-api.git",
-                "reference": "a458d4de6b80918dcfe23811f48e4d522b5edb51"
+                "reference": "21e6bf503ea6f6e6cb31a17f521670d0e5837c8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aa24615/stock-api/zipball/a458d4de6b80918dcfe23811f48e4d522b5edb51",
-                "reference": "a458d4de6b80918dcfe23811f48e4d522b5edb51",
+                "url": "https://api.github.com/repos/aa24615/stock-api/zipball/21e6bf503ea6f6e6cb31a17f521670d0e5837c8e",
+                "reference": "21e6bf503ea6f6e6cb31a17f521670d0e5837c8e",
                 "shasum": ""
             },
             "require": {
@@ -5636,7 +5636,6 @@
                 "friendsofphp/php-cs-fixer": "^2.18",
                 "phpunit/phpunit": "^9.5|^10|11"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -5659,9 +5658,9 @@
             ],
             "support": {
                 "issues": "https://github.com/aa24615/stock-api/issues",
-                "source": "https://github.com/aa24615/stock-api/tree/dev-1.0.1"
+                "source": "https://github.com/aa24615/stock-api/tree/dev-1.0.2"
             },
-            "time": "2024-11-25T11:55:59+00:00"
+            "time": "2025-02-12T10:23:39+00:00"
         }
     ],
     "packages-dev": [
@@ -7885,9 +7884,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "zyan/stock-api": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

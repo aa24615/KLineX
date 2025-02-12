@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\StockList;
-use Illuminate\Database\Eloquent\Model;
 use Zyan\StockApi\StockApi;
 
 class StockListService
@@ -46,41 +45,39 @@ class StockListService
             ],
         ];
 
+        if(!isset($types[$type])){
+            throw new \Exception('不支持的股票类型');
+        }
+
         $typeValue = $types[$type]['type'];
         $marketValue = $types[$type]['market'];
         $exchangeValue = $types[$type]['exchange'];
 
-        $data = $xueQiu->getListAll($marketValue,$typeValue);
+        $data = $xueQiu->getListAll($marketValue, $typeValue);
 
+        foreach ($data['list'] as $val) {
+            $stockList = StockList::query()->where('symbol', $val['symbol'])->first();
 
-
-        foreach ($data['list'] as $val){
-
-
-
-
-            $stockList = StockList::query()->where('symbol',$val['symbol'])->first();
-
-            if(!$stockList){
+            if (!$stockList) {
                 $stockList = new StockList();
                 $stockList->symbol = $val['symbol'];
             }
 
             $stockList->name = $val['name'];
-            $stockList->code = $marketValue=='CN' ? (int)$val['symbol'] : $val['symbol'];
+            $stockList->code = $marketValue == 'CN' ? (int)$val['symbol'] : $val['symbol'];
             $stockList->exchange = $exchangeValue;
             $stockList->type = $val['type'];
-            $stockList->chg = $val['chg'];
-            $stockList->current = $val['current'];
-            $stockList->current_year_percent = $val['current_year_percent'];
-            $stockList->percent = $val['percent'];
+            $stockList->chg = (float)$val['chg'];
+            $stockList->current = (float)$val['current'];
+            $stockList->current_year_percent = (float)$val['current_year_percent'];
+            $stockList->percent = (float)$val['percent'];
             $stockList->volume = (float)$val['volume'];
             $stockList->amount = (float)$val['amount'];
-            $stockList->turnover_rate = $val['turnover_rate'];
+            $stockList->turnover_rate = (float)$val['turnover_rate'];
             $stockList->pe_ttm = (float)$val['pe_ttm'];
             $stockList->dividend_yield = (float)$val['dividend_yield'];
-            $stockList->market_capital = $val['market_capital'];
-            $stockList->float_market_capital = $val['float_market_capital'];
+            $stockList->market_capital = (float)$val['market_capital'];
+            $stockList->float_market_capital = (float)$val['float_market_capital'];
 
             $stockList->save();
         }

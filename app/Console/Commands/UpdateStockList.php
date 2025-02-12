@@ -5,6 +5,13 @@ namespace App\Console\Commands;
 use App\Services\StockListService;
 use Illuminate\Console\Command;
 
+/**
+ * Class UpdateStockList.
+ *
+ * @package App\Console\Commands
+ *
+ * @author 读心印 <aa24615@qq.com>
+ */
 class UpdateStockList extends Command
 {
     /**
