@@ -40,7 +40,7 @@ services:
     networks:
       - stock_network
     ports:
-      - "8818:8818"
+      - "8018:8818"
     volumes:
       - "../:/www/"
       - "./php/php.ini:/usr/local/etc/php/conf.d/php.ini"

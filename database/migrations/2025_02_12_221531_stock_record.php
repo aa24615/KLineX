@@ -43,6 +43,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('stock_list');
+        Schema::dropIfExists('stock_record');
     }
 };
