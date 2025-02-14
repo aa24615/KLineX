@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\StockListService;
+use App\Utils\ConsoleUtil;
 use Illuminate\Console\Command;
 
 /**

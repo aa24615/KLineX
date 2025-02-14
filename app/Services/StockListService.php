@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\StockList;
+use App\Utils\ConsoleOutputUtil;
 use Zyan\StockApi\StockApi;
 
 class StockListService
@@ -53,7 +54,11 @@ class StockListService
         $marketValue = $types[$type]['market'];
         $exchangeValue = $types[$type]['exchange'];
 
+        ConsoleOutputUtil::info('更新股票类型:'.$typeValue);
+
         $data = $xueQiu->getListAll($marketValue, $typeValue);
+
+        ConsoleOutputUtil::br();
 
         foreach ($data['list'] as $val) {
             $stockList = StockList::query()->where('symbol', $val['symbol'])->first();
@@ -78,9 +83,14 @@ class StockListService
             $stockList->dividend_yield = (float)$val['dividend_yield'];
             $stockList->market_capital = (float)$val['market_capital'];
             $stockList->float_market_capital = (float)$val['float_market_capital'];
-
             $stockList->save();
+
+            ConsoleOutputUtil::info('更新股票:'.$val['symbol']);
         }
+
+        ConsoleOutputUtil::br();
+        ConsoleOutputUtil::info('本次更新数量:'.$data['count']);
+
     }
 }
 

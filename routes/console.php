@@ -17,5 +17,4 @@ Schedule::command('update:stock_list shb')->cron("*/10 9-12,13-15 * * 1-5")->run
 Schedule::command('update:stock_list hk')->cron("*/10 9-12,13-16 * * 1-5")->runInBackground();
 //Schedule::command('update:stock_list us')->cron("*/10 21-23,0-5 * * 1-5")->runInBackground();
 
-Schedule::command('update:stock_list hk')->cron("*/10 9-12,13-16 * * 1-5")->runInBackground();
 
