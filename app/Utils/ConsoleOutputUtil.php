@@ -2,6 +2,7 @@
 
 namespace App\Utils;
 
+use Illuminate\Support\Facades\App;
 use Symfony\Component\Console\Formatter\OutputFormatter;
 
 /**
@@ -34,9 +35,11 @@ class ConsoleOutputUtil
     // 使用 formatter 输出带有颜色和样式的文本
     public static function printColoredText($text, $style)
     {
-        $formatter = new OutputFormatter(true);
-        echo $formatter->format("<{$style}>{$text}</>");
-        echo PHP_EOL;
+        if(App::runningInConsole()){
+            $formatter = new OutputFormatter(true);
+            echo $formatter->format("<{$style}>{$text}</>");
+            echo PHP_EOL;
+        }
     }
 
 }

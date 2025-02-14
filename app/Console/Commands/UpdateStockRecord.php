@@ -3,30 +3,31 @@
 namespace App\Console\Commands;
 
 use App\Services\StockListService;
+use App\Services\StockRecordService;
 use Illuminate\Console\Command;
 
 /**
- * Class UpdateStockList.
+ * Class UpdateStockRecord.
  *
  * @package App\Console\Commands
  *
  * @author 读心印 <aa24615@qq.com>
  */
-class UpdateStockList extends Command
+class UpdateStockRecord extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'update:stock_list {type}';
+    protected $signature = 'update:stock_record';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '更新股票列表';
+    protected $description = '更新每天股票';
 
     /**
      * Execute the console command.
@@ -34,10 +35,9 @@ class UpdateStockList extends Command
     public function handle()
     {
 
-        $type = $this->argument('type');
 
-        $stockListService = new StockListService();
-        $stockListService->update($type);
+        $stockListService = new StockRecordService();
+        $stockListService->update();
 
         $this->info("ok");
     }
