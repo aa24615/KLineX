@@ -3,6 +3,7 @@
 namespace App\Utils;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\Console\Formatter\OutputFormatter;
 
 /**
@@ -39,6 +40,7 @@ class ConsoleOutputUtil
             $formatter = new OutputFormatter(true);
             echo $formatter->format("<{$style}>{$text}</>");
             echo PHP_EOL;
+            Log::info($text);
         }
     }
 

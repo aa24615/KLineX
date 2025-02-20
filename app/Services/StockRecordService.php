@@ -16,7 +16,9 @@ class StockRecordService
 
             // 使用循环或者手动设置每个属性
             foreach ($item->getAttributes() as $key => $value) {
-                $record->$key = $value;
+                if(!in_array($key, ['id', 'created_at', 'updated_at'])){
+                    $record->$key = $value;
+                }
             }
 
             $record->date = date('Y-m-d');

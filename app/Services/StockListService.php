@@ -10,8 +10,11 @@ class StockListService
 {
     public function update($type)
     {
-        $stockApi = new StockApi();
-        $xueQiu = $stockApi->getXueQiuApi();
+
+        StockApi::setConfig([
+            'cache_path' => storage_path('framework/cache'),
+        ]);
+        $xueQiu = StockApi::getXueqiu();
 
         $types = [
             'hk' => [
