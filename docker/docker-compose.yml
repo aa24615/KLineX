@@ -5,7 +5,7 @@ services:
   mysql:
     image: "mysql:8.4.3-oracle"
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - "./mysql/data:/var/lib/mysql"
       - "./mysql/log:/var/log/"
@@ -19,8 +19,8 @@ services:
       - stock_network
   redis:
     image: "registry.cn-hangzhou.aliyuncs.com/php127/redis:6.2.5"
-    ports:
-      - "6379:6379"
+#    ports:
+#      - "6379:6379"
     volumes:
       - "./redis/data:/data/redis/data"
       - "./redis/redis.conf:/etc/redis.conf"
