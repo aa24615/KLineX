@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Admin\Controllers;
+
+use Illuminate\Http\Request;
+use Slowlyo\OwlAdmin\Controllers\AdminController;
+
+class SettingController extends AdminController
+{
+    public function index()
+    {
+        if ($this->actionOfGetData()) return $this->response()->success(settings()->all());
+
+        $page = $this->basePage()->body([
+            amis()->Alert()->showIcon()->body("此处内容仅供演示, 设置项无实际意义，实际开发中请根据实际情况进行修改。"),
+            $this->form(),
+        ]);
+
+        return $this->response()->success($page);
+    }
+
+    public function form()
+    {
+        return $this->baseForm(false)
+            ->redirect('')
+            ->api($this->getStorePath())
+            ->initApi('/system/settings?_action=getData')
+            ->body(
+                amis()->Tabs()->tabs([
+                    amis()->Tab()->title('基本设置')->body([
+                        amis()->TextControl()->label('网站名称')->name('site_name'),
+                        amis()->InputKV()->label('附加配置')->name('addition_config'),
+                    ]),
+                    amis()->Tab()->title('上传设置')->body([
+                        amis()->TextControl()->label('上传域名')->name('upload_domain'),
+                        amis()->TextControl()->label('上传路径')->name('upload_path'),
+                    ]),
+                ])
+            );
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->only([
+            'site_name',
+            'addition_config',
+            'upload_domain',
+            'upload_path',
+        ]);
+
+        return settings()->adminSetMany($data);
+    }
+}
