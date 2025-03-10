@@ -3,7 +3,7 @@ version: '3'
 name: "stock"
 services:
   mysql:
-    image: "mysql:8.4.3-oracle"
+    image: "docker.cnb.cool/php127/docker/mysql:8.4.3-oracle"
     ports:
       - "3307:3306"
     volumes:
@@ -32,7 +32,7 @@ services:
     networks:
       - stock_network
   php:
-    image: "php:8.4-cli-alpine"
+    image: "docker.cnb.cool/php127/docker/php:8.4-cli-alpine"
     restart: always
     privileged: true
     environment:
