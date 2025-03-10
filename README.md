@@ -2,6 +2,9 @@
 
 用 laravel 11 开发的股票 分析系统
 
+![img](./docs/img/top.png)
+
+
 # 注意:本项目还在开发中
 
 ## 要求
@@ -24,10 +27,10 @@ php artisan migrate
 ## http服务
 
 ```
-php artisan serve --port=8818 --host=0.0.0.0
+php artisan serve --port=8018 --host=0.0.0.0
 ```
 
-[http://127.0.0.1:8818](http://127.0.0.1:8818)
+[http://127.0.0.1:8018](http://127.0.0.1:8018)
 
 
 ## 任务调度
@@ -48,7 +51,7 @@ php artisan schedule
 ```
 cd docker && docker-compose up -d
 ```
-等待 ```N``` 秒后即可访问 [http://127.0.0.1:8818](http://127.0.0.1:8818)
+等待 ```N``` 秒后即可访问 [http://127.0.0.1:8018](http://127.0.0.1:8018)
 
 ## 说明
 
