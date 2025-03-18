@@ -64,7 +64,7 @@ class StockListService
         ConsoleOutputUtil::br();
 
         foreach ($data['list'] as $val) {
-            $stockList = StockList::query()->where('symbol', $val['symbol'])->first();
+            $stockList = StockList::query()->whereSymbol( $val['symbol'])->first();
 
             if (!$stockList) {
                 $stockList = new StockList();
