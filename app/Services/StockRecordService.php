@@ -14,9 +14,7 @@ class StockRecordService
         foreach ($list as $item) {
 
 
-
-
-            if(StockRecord::query()->whereSymbol($item->symbol)->where('date',$item->date)->first()){
+            if(StockRecord::whereSymbol($item->symbol)->where('date',$item->date)->first()){
                 ConsoleOutputUtil::info('已存在记录: '.$item->symbol);
                 continue;
             }
@@ -35,7 +33,7 @@ class StockRecordService
             // 保存新记录
             $record->save();
 
-            ConsoleOutputUtil::info('更新记录: '.$item->symbol);
+            ConsoleOutputUtil::info('更新天级表: '.$item->symbol);
         }
 
     }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $date 日期
