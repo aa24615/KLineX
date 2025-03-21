@@ -57,24 +57,4 @@ class StockRecord extends Model
     protected $table = 'stock_record';
 
     protected $primaryKey = 'id';
-
-    public function getTable()
-    {
-        if (isset($this->attributes['date'])) {
-            // 根据 user_id 选择对应的分表
-            $year = date('Y',strtotime($this->attributes['date'])); // 假设有10个分表
-            return 'stock_record_' . $year;
-        }
-        return parent::getTable(); // 返回默认表名
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-
-        // 监听模型创建事件，确保新记录被插入正确的表中
-        static::creating(function ($model) {
-            $model->getTable(); // 确保表名正确设置
-        });
-    }
 }

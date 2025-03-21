@@ -12,6 +12,15 @@ class StockRecordService
         $list = StockList::all();
 
         foreach ($list as $item) {
+
+
+
+
+            if(StockRecord::query()->whereSymbol($item->symbol)->where('date',$item->date)->first()){
+                ConsoleOutputUtil::info('已存在记录: '.$item->symbol);
+                continue;
+            }
+
             $record = new StockRecord();
 
             // 使用循环或者手动设置每个属性
