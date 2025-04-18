@@ -7,8 +7,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "laravel/framework": "^11.31",
-        "laravel/sanctum": "^4.0",
+        "alibabacloud/client": "^1.5",
+        "aliyuncs/oss-sdk-php": "^2.7",
+        "laravel/framework": "^11.30",
         "laravel/tinker": "^2.9",
         "zyan/stock-api": "^2.0"
     },

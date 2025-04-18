@@ -1,0 +1,75 @@
+<?php
+// +----------------------------------------------------------------------
+// | likeadmin_laravel快速开发前后端分离管理后台
+// +----------------------------------------------------------------------
+// | 欢迎阅读学习系统程序代码，建议反馈是我们前进的动力
+// | likeadmin项目：https://gitee.com/likeshop_gitee/likeadmin
+// | likeadmin_laravel项目：https://github.com/1nFrastr/likeadmin_laravel
+// | 独立开发者博客：https://www.sodair.top
+// +----------------------------------------------------------------------
+// | author: 1nFrastr x likeadminTeam
+// +----------------------------------------------------------------------
+
+{NAMESPACE}
+
+
+{USE}
+use App\Common\Lists\ListsSearchInterface;
+
+
+/**
+ * {CLASS_COMMENT}
+ * Class {UPPER_CAMEL_NAME}Lists
+ * @package App\{MODULE_NAME}\Lists{PACKAGE_NAME}
+ */
+class {UPPER_CAMEL_NAME}Lists extends {EXTENDS_LISTS} implements ListsSearchInterface
+{
+
+
+    /**
+     * @notes 设置搜索条件
+     * @return \string[][]
+     * @author {AUTHOR}
+     * @date {DATE}
+     */
+    public function setSearch(): array
+    {
+        return [
+{QUERY_CONDITION}
+        ];
+    }
+
+
+    /**
+     * @notes 获取{NOTES}列表
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\DbException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @author {AUTHOR}
+     * @date {DATE}
+     */
+    public function lists(): array
+    {
+        $lists = {UPPER_CAMEL_NAME}::where($this->searchWhere)
+            ->field([{FIELD_DATA}])
+            ->order(['{PK}' => 'desc'])
+            ->select()
+            ->toArray();
+
+        return linear_to_tree($lists, 'children', '{TREE_ID}', '{TREE_PID}');
+    }
+
+
+    /**
+     * @notes 获取{NOTES}数量
+     * @return int
+     * @author {AUTHOR}
+     * @date {DATE}
+     */
+    public function count(): int
+    {
+        return {UPPER_CAMEL_NAME}::where($this->searchWhere)->count();
+    }
+
+}

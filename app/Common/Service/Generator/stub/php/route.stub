@@ -1,0 +1,27 @@
+<?php
+// +----------------------------------------------------------------------
+// | likeadmin_laravel快速开发前后端分离管理后台
+// +----------------------------------------------------------------------
+// | 欢迎阅读学习系统程序代码，建议反馈是我们前进的动力
+// | likeadmin项目：https://gitee.com/likeshop_gitee/likeadmin
+// | likeadmin_laravel项目：https://github.com/1nFrastr/likeadmin_laravel
+// | 独立开发者博客：https://www.sodair.top
+// +----------------------------------------------------------------------
+// | author: 1nFrastr x likeadminTeam
+// +----------------------------------------------------------------------
+
+{USE}
+use Illuminate\Support\Facades\Route;
+
+/**
+ * @notes 定义{NOTES}路由
+ * @author {AUTHOR}
+ * @date {DATE}
+ */
+Route::controller({UPPER_CAMEL_NAME}Controller::class)->group(function () {
+    Route::get('/{ROUTE}/lists', 'lists');
+    Route::post('/{ROUTE}/add', 'add');
+    Route::post('/{ROUTE}/edit', 'edit');
+    Route::post('/{ROUTE}/delete', 'delete');
+    Route::get('/{ROUTE}/detail', 'detail');
+});

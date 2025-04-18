@@ -1,0 +1,59 @@
+<?php
+// +----------------------------------------------------------------------
+// | likeadmin_laravel快速开发前后端分离管理后台
+// +----------------------------------------------------------------------
+// | 欢迎阅读学习系统程序代码，建议反馈是我们前进的动力
+// | likeadmin项目：https://gitee.com/likeshop_gitee/likeadmin
+// | likeadmin_laravel项目：https://github.com/1nFrastr/likeadmin_laravel
+// | 独立开发者博客：https://www.sodair.top
+// +----------------------------------------------------------------------
+// | author: 1nFrastr x likeadminTeam
+// +----------------------------------------------------------------------
+
+{NAMESPACE}
+
+use App\Common\Validate\BaseValidate;
+
+/**
+ * {CLASS_COMMENT}
+ * Class {UPPER_CAMEL_NAME}Validate
+ * @package App\{MODULE_NAME}\Validate{PACKAGE_NAME}
+ */
+class {UPPER_CAMEL_NAME}Validate extends BaseValidate
+{
+    /**
+     * 设置错误信息
+     * @var string[]
+     */
+   protected $messages = [
+        '{PK}.required' => '{PK}不能为空',
+{FIELD}
+   ];
+
+    /**
+     * 设置校验规则
+     * @param $scene
+     * @return array
+     */
+    public function rules($scene = '')
+    {
+        $rules = [
+            'add' => [
+{ADD_RULES}
+            ],
+            'edit' => [
+                '{PK}' => 'required',
+{EDIT_RULES}
+            ],
+            'detail' => [
+                '{PK}' => 'required',
+            ],
+            'delete' => [
+                '{PK}' => 'required',
+            ],
+        ];
+
+        return $rules[$scene] ?? [];
+    }
+
+}
