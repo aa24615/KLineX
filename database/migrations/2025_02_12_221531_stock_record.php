@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->date('date')->comment('日期');
             $table->string('symbol',50)->default('')->comment('股票代码');
+            $table->string('market',50)->default('')->comment('国家代码');
             $table->string('code',50)->default('')->comment('代码');
             $table->string('exchange',50)->default('')->comment('交易所');
             $table->string('type',50)->default('')->comment('股票类型');
