@@ -7,6 +7,11 @@ KLineX股票分析系统
 ![img](./docs/img/top.png)
 
 
+## 代码
+
+后端代码: [https://github.com/aa24615/KLineX](https://github.com/aa24615/KLineX)    
+前端代码: [https://github.com/aa24615/KLineX-admin](https://github.com/aa24615/KLineX-admin)
+
 
 ## 开发计划
 

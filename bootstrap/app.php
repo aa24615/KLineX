@@ -4,8 +4,8 @@ use App\Adminapi\Middleware\AuthMiddleware;
 use App\Adminapi\Middleware\InitMiddleware;
 use App\Adminapi\Middleware\LoginMiddleware;
 use App\Adminapi\Middleware\OperationLogMiddleware;
-use App\Api\Middleware\InitMiddleware as ApiInitMiddleware;
-use App\Api\Middleware\LoginMiddleware as ApiLoginMiddleware;
+//use App\Api\Middleware\InitMiddleware as ApiInitMiddleware;
+//use App\Api\Middleware\LoginMiddleware as ApiLoginMiddleware;
 use App\Common\Service\JsonService;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -16,13 +16,13 @@ use Illuminate\Validation\ValidationException;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         using: function () {
-            // 用户端API
-            Route::prefix('api')
-                ->middleware([
-                    ApiInitMiddleware::class, // 初始化
-                    ApiLoginMiddleware::class, // 登录验证
-                ])
-                ->group(app_path('Api/Route/index.php'));
+//            // 用户端API
+//            Route::prefix('api')
+//                ->middleware([
+//                    ApiInitMiddleware::class, // 初始化
+//                    ApiLoginMiddleware::class, // 登录验证
+//                ])
+//                ->group(app_path('Api/Route/index.php'));
 
             // 管理后台API
             Route::prefix('adminapi')
