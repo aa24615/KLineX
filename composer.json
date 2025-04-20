@@ -13,7 +13,8 @@
         "phpoffice/phpspreadsheet": "^3.3",
         "qcloud/cos-sdk-v5": "^2.6",
         "tencentcloud/sms": "^3.0",
-        "w7corp/easywechat": "^6.15"
+        "w7corp/easywechat": "^6.15",
+        "zyan/stock-api": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.5",

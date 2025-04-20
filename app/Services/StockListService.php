@@ -72,6 +72,7 @@ class StockListService
             }
 
             $stockList->name = $val['name'];
+            $stockList->market = $marketValue;
             $stockList->code = $marketValue == 'CN' ? (int)$val['symbol'] : $val['symbol'];
             $stockList->exchange = $exchangeValue;
             $stockList->type = $val['type'];
