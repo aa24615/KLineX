@@ -13,7 +13,7 @@ class ExportCache extends BaseCache
         $this->uniqid = md5(uniqid($this->tagName, true) . mt_rand());
     }
 
-    /**
+    /**n
      * @notes 获取excel缓存目录
      * @return string
      */

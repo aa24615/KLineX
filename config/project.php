@@ -29,7 +29,7 @@ return [
     ],
 
     // 唯一标识，密码盐、路径加密等
-    'unique_identification' => env('PROJECT_UNIQUE_IDENTIFICATION', 'Likeadmin-Laravel'),
+    'unique_identification' => env('PROJECT_UNIQUE_IDENTIFICATION', 'KLineX'),
 
     // 后台管理员token（登录令牌）配置
     'admin_token' => [

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Config;
 
 class AppTest extends Command
 {
@@ -25,6 +26,14 @@ class AppTest extends Command
      */
     public function handle()
     {
+
+
+        $passwordSalt = Config::get('project.unique_identification');
+
+
+        echo create_password('admin', $passwordSalt);
+
+
         dd(base_path(), storage_path('/'));
     }
 

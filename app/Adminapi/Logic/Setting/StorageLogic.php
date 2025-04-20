@@ -28,12 +28,6 @@ class StorageLogic extends BaseLogic
                 'status' => $default == 'local' ? 1 : 0
             ],
             [
-                'name' => '七牛云存储',
-                'path' => '存储在七牛云，请前往七牛云开通存储服务',
-                'engine' => 'qiniu',
-                'status' => $default == 'qiniu' ? 1 : 0
-            ],
-            [
                 'name' => '阿里云OSS',
                 'path' => '存储在阿里云，请前往阿里云开通存储服务',
                 'engine' => 'aliyun',
@@ -60,14 +54,6 @@ class StorageLogic extends BaseLogic
 
         // 本地存储
         $local = ['status' => $default == 'local' ? 1 : 0];
-        // 七牛云存储
-        $qiniu = ConfigService::get('storage', 'qiniu', [
-            'bucket' => '',
-            'access_key' => '',
-            'secret_key' => '',
-            'domain' => '',
-            'status' => $default == 'qiniu' ? 1 : 0
-        ]);
 
         // 阿里云存储
         $aliyun = ConfigService::get('storage', 'aliyun', [
@@ -90,7 +76,6 @@ class StorageLogic extends BaseLogic
 
         $data = [
             'local' => $local,
-            'qiniu' => $qiniu,
             'aliyun' => $aliyun,
             'qcloud' => $qcloud
         ];
@@ -118,14 +103,6 @@ class StorageLogic extends BaseLogic
         switch ($params['engine']) {
             case 'local':
                 ConfigService::set('storage', 'local', []);
-                break;
-            case 'qiniu':
-                ConfigService::set('storage', 'qiniu', [
-                    'bucket' => $params['bucket'] ?? '',
-                    'access_key' => $params['access_key'] ?? '',
-                    'secret_key' => $params['secret_key'] ?? '',
-                    'domain' => $params['domain'] ?? ''
-                ]);
                 break;
             case 'aliyun':
                 ConfigService::set('storage', 'aliyun', [
