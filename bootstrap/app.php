@@ -38,6 +38,8 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::prefix('/')
                 ->group(base_path('routes/web.php'));
         },
+        web: __DIR__.'/../routes/web.php',
+        commands: __DIR__.'/../routes/console.php',
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->use([
