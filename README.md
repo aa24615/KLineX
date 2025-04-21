@@ -17,6 +17,7 @@ KLineX股票分析系统
 
  |  包名 | 描述 |
 |---|---|
+|[likeadmin](https://likeadmin.cn/)|管理后台|
 | [zyan/stock-api](https://github.com/zyan/stock-api) | 股票API |
 | [guanguans/notify](https://github.com/guanguans/notify) | 消息推送 |
 
