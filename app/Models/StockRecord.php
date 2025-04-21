@@ -50,6 +50,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockRecord whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockRecord whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockRecord whereVolume($value)
+ * @property string $market
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockRecord whereMarket($value)
  * @mixin \Eloquent
  */
 class StockRecord extends Model

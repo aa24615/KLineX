@@ -27,7 +27,7 @@ class ListsValidate extends BaseValidate
                 'page_start' => 'integer|gt:0',
                 'page_end' => 'integer|gt:0|gte:page_start', // 使用 gte 替代 egt
                 'page_type' => 'in:0,1',
-                'order_by' => 'in:desc,asc',
+                'order_by' => 'in:desc,asc,descending,ascending',
                 'start_time' => 'date',
                 'end_time' => 'date|after:start_time', // 使用 after 替代 gt
                 'start' => 'numeric', // 使用 numeric 替代 number

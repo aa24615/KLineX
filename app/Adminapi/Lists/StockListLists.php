@@ -43,6 +43,34 @@ class StockListLists extends BaseAdminDataLists implements ListsSearchInterface
     }
 
 
+
+    public function setSortFields(){
+        return [
+            'id' => 'id',
+            'symbol' => 'symbol',
+            'code' => 'code',
+            'exchange' => 'exchange',
+            'market' => 'market',
+            'name' => 'name',
+            'chg' => 'chg',
+            'current' => 'current',
+            'current_year_percent' => 'current_year_percent',
+            'percent' => 'percent',
+            'volume' => 'volume',
+            'amount' => 'amount',
+            'turnover_rate' => 'turnover_rate',
+            'pe_ttm' => 'pe_ttm',
+            'dividend_yield' => 'dividend_yield',
+            'market_capital' => 'market_capital',
+            'float_market_capital' => 'float_market_capital',
+            'updated_at' => 'updated_at',
+        ];
+    }
+
+    public function setDefaultOrder(){
+        return ['percent' => 'desc'];
+    }
+
     /**
      * @notes 获取列表
      * @return array
@@ -51,11 +79,12 @@ class StockListLists extends BaseAdminDataLists implements ListsSearchInterface
      */
     public function lists(): array
     {
+
         return StockList::applySearchWhere($this->searchWhere)
             ->select(['id', 'symbol', 'code', 'exchange', 'market', 'name', 'chg', 'current', 'current_year_percent', 'percent', 'volume', 'amount', 'turnover_rate', 'pe_ttm', 'dividend_yield', 'market_capital', 'float_market_capital', 'updated_at'])
             ->limit($this->limitLength)
             ->offset($this->limitOffset)
-            ->orderBy('id', 'desc')
+            ->applySortOrder($this->sortOrder)
             ->get()
             ->toArray();
     }

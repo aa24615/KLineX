@@ -48,6 +48,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockList whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockList whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockList whereVolume($value)
+ * @property string $market
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockList whereMarket($value)
  * @mixin \Eloquent
  */
 class StockList extends Model

@@ -2,6 +2,8 @@
 
 namespace App\Common\Lists;
 
+use Illuminate\Support\Facades\Log;
+
 trait ListsSortTrait
 {
 
@@ -22,14 +24,16 @@ trait ListsSortTrait
 
         if (isset($sortField[$this->field])) {
             $field = $sortField[$this->field];
+            Log::info($field);
         } else {
+            Log::info($defaultOrder);
             return $defaultOrder;
         }
 
-        if ($this->orderBy == 'desc') {
+        if (strpos($this->orderBy,'desc')!==false) {
             return [$field => 'desc'];
         }
-        if ($this->orderBy == 'asc') {
+        if (strpos($this->orderBy,'asc')!==false) {
             return [$field => 'asc'];
         }
         return $defaultOrder;
