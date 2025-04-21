@@ -13,6 +13,20 @@ KLineX股票分析系统
 前端代码: [https://github.com/aa24615/KLineX-admin](https://github.com/aa24615/KLineX-admin)
 
 
+后端组件
+
+ |  包名 | 描述 |
+|---|---|
+| [zyan/stock-api](https://github.com/zyan/stock-api) | 股票API |
+| [guanguans/notify](https://github.com/guanguans/notify) | 消息推送 |
+
+前端组件
+
+ |  包名 | 描述 |
+|---|---|
+|[vue3](https://cn.vuejs.org/)| 框架|
+|[element-plus](https://cn.element-plus.org/zh-CN/)|UI|
+
 ## 开发计划
 
 #### 2024 搭好框架与数据库
