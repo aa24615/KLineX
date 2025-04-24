@@ -4,7 +4,7 @@ KLineX股票分析系统
 
 使用 laravel 11 开发
 
-![img](./docs/img/top.png)
+![img](./docs/img/list.png)
 
 
 ## 代码
@@ -75,6 +75,11 @@ php artisan serve --port=8018 --host=0.0.0.0
 [http://127.0.0.1:8018](http://127.0.0.1:8018)
 
 
+
+![img](./docs/img/login.png)
+
+用户名: admin 密码: admin
+
 ## 任务调度
 
 其中包括股票数据更新等
@@ -94,6 +99,8 @@ php artisan schedule
 cd docker && docker-compose up -d
 ```
 等待 ```N``` 秒后即可访问 [http://127.0.0.1:8018](http://127.0.0.1:8018)
+
+用户名: admin 密码: admin
 
 ## 说明
 
