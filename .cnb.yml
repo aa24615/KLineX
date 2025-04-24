@@ -1,0 +1,25 @@
+master:
+  push:
+    - services:
+        - docker
+      imports: https://cnb.cool/php127/config/-/blob/main/envs.yml
+      docker:
+        image: docker.cnb.cool/php127/docker/php:8.4-cli-alpine
+        #volumes缓存：https://docs.cnb.cool/zh/grammar/pipeline.html#volumes
+        volumes:
+          # 使用缓存，同时更新
+          - /root/
+      stages:
+        # 云原生构建自动构建Docker镜像并将它发布到制品库
+        - name: composer install
+          script:
+            - php composer.phar install --no-scripts --no-dev --prefer-dist --optimize-autoloader
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+        - name: docker build
+          script:
+            - docker build -f docker/Dockerfile -t ${CNB_DOCKER_REGISTRY}/${CNB_REPO_SLUG_LOWERCASE}:${CNB_BRANCH}-${CNB_COMMIT_SHORT} .
+        - name: docker push
+          script:
+            - docker push ${CNB_DOCKER_REGISTRY}/${CNB_REPO_SLUG_LOWERCASE}:${CNB_BRANCH}-${CNB_COMMIT_SHORT}
