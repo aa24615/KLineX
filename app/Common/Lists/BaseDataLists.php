@@ -98,9 +98,11 @@ abstract class BaseDataLists implements ListsInterface
      */
     private function initSearch()
     {
+
         if (!($this instanceof ListsSearchInterface)) {
             return [];
         }
+
         $startTime = $this->request->get('start_time');
         if ($startTime) {
             $this->startTime = strtotime($startTime);
@@ -123,9 +125,6 @@ abstract class BaseDataLists implements ListsInterface
      */
     private function initSort()
     {
-        if (!($this instanceof ListsSortInterface)) {
-            return [];
-        }
 
         $this->field = $this->request->get('field', '');
         $this->orderBy = $this->request->get('order_by', '');
