@@ -80,13 +80,32 @@ class StockListLists extends BaseAdminDataLists implements ListsSearchInterface
     public function lists(): array
     {
 
-        return StockList::applySearchWhere($this->searchWhere)
+
+        $list =  StockList::applySearchWhere($this->searchWhere)
             ->select(['id', 'symbol', 'code', 'exchange', 'market', 'name', 'chg', 'current', 'current_year_percent', 'percent', 'volume', 'amount', 'turnover_rate', 'pe_ttm', 'dividend_yield', 'market_capital', 'float_market_capital', 'updated_at'])
             ->limit($this->limitLength)
             ->offset($this->limitOffset)
             ->applySortOrder($this->sortOrder)
             ->get()
             ->toArray();
+
+
+//        foreach ($list as &$item){
+//            $item['current'] = (float)$item['current'];
+//            $item['percent'] = (float)$item['percent'];
+//            $item['chg'] = (float)$item['chg'];
+//            $item['current_year_percent'] = (float)$item['current_year_percent'];
+//            $item['volume'] = (float)$item['volume'];
+//            $item['amount'] = (float)$item['amount'];
+//            $item['turnover_rate'] = (float)$item['turnover_rate'];
+//            $item['pe_ttm'] = (float)$item['pe_ttm'];
+//            $item['market_capital'] = (float)$item['market_capital'];
+//            $item['float_market_capital'] = (float)$item['float_market_capital'];
+//            $item['dividend_yield'] = (float)$item['dividend_yield'];
+//        }
+
+
+        return $list;
     }
 
 
