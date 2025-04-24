@@ -25,9 +25,7 @@
         "laravel/sail": "^1.26",
         "laravel/telescope": "*",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.1",
-        "pestphp/pest": "^3.5",
-        "pestphp/pest-plugin-laravel": "^3.0"
+        "nunomaduro/collision": "^8.1"
     },
     "autoload": {
         "psr-4": {
@@ -76,13 +74,6 @@
     },
     "config": {
         "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "php-http/discovery": true
-        }
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+        "preferred-install": "dist"
+    }
 }
