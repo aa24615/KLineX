@@ -22476,6 +22476,49 @@ namespace Illuminate\Support\Facades {
             }
     }
 
+namespace Spatie\SignalAwareCommand\Facades {
+    /**
+     * 
+     *
+     * @see \Spatie\SignalAwareCommand\Signal
+     */
+    class Signal {
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function handle($signal, $callable)
+        {
+            /** @var \Spatie\SignalAwareCommand\Signal $instance */
+            return $instance->handle($signal, $callable);
+        }
+
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function executeSignalHandlers($signal, $command)
+        {
+            /** @var \Spatie\SignalAwareCommand\Signal $instance */
+            return $instance->executeSignalHandlers($signal, $command);
+        }
+
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function clearHandlers($signal = null)
+        {
+            /** @var \Spatie\SignalAwareCommand\Signal $instance */
+            return $instance->clearHandlers($signal);
+        }
+
+            }
+    }
+
 namespace Illuminate\Http {
     /**
      * 
@@ -27252,6 +27295,7 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
     class View extends \Illuminate\Support\Facades\View {}
     class Vite extends \Illuminate\Support\Facades\Vite {}
+    class Signal extends \Spatie\SignalAwareCommand\Facades\Signal {}
 }
 
 
