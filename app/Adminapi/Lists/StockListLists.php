@@ -90,19 +90,19 @@ class StockListLists extends BaseAdminDataLists implements ListsSearchInterface
             ->toArray();
 
 
-//        foreach ($list as &$item){
-//            $item['current'] = (float)$item['current'];
-//            $item['percent'] = (float)$item['percent'];
-//            $item['chg'] = (float)$item['chg'];
-//            $item['current_year_percent'] = (float)$item['current_year_percent'];
-//            $item['volume'] = (float)$item['volume'];
-//            $item['amount'] = (float)$item['amount'];
-//            $item['turnover_rate'] = (float)$item['turnover_rate'];
-//            $item['pe_ttm'] = (float)$item['pe_ttm'];
-//            $item['market_capital'] = (float)$item['market_capital'];
-//            $item['float_market_capital'] = (float)$item['float_market_capital'];
-//            $item['dividend_yield'] = (float)$item['dividend_yield'];
-//        }
+        foreach ($list as &$item){
+            $item['current'] = (float)$item['current'];
+            $item['percent'] = (float)$item['percent'];
+            $item['chg'] = (float)$item['chg'];
+            $item['current_year_percent'] = (float)$item['current_year_percent'];
+            $item['volume'] = (float)$item['volume'];
+            $item['amount'] = (float)$item['amount'];
+            $item['turnover_rate'] = (float)$item['turnover_rate'];
+            $item['pe_ttm'] = (float)$item['pe_ttm'];
+            $item['market_capital'] = (float)$item['market_capital'];
+            $item['float_market_capital'] = (float)$item['float_market_capital'];
+            $item['dividend_yield'] = (float)$item['dividend_yield'];
+        }
 
 
         return $list;
