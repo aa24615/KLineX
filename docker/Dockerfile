@@ -1,8 +1,9 @@
 FROM php:8.4-cli-alpine3.20
+
 WORKDIR /www/
 
 
-#git
+# base packages
 
 RUN apk update
 RUN apk add git
@@ -34,6 +35,11 @@ RUN install-php-extensions mbstring
 RUN install-php-extensions openssl
 RUN install-php-extensions tokenizer
 RUN install-php-extensions xml
+RUN install-php-extensions opcache
+
+
+COPY . /www/
+
 
 
 CMD sleep infinity
