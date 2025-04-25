@@ -4,10 +4,12 @@ WORKDIR /www/
 
 #git
 
+RUN apk update
 RUN apk add git
 RUN apk add bash
 RUN apk add zip
-RUN apk add mysql
+RUN apk add mysql-client
+RUN apk add mariadb-connector-c
 
 
 #install-php-extensions
