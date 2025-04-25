@@ -57,14 +57,15 @@ KLineX股票分析系统
 
 ## 安装
 
-安装所需要的包
+1.安装所需要的包
 ```
 php composer.phar install
 ```
-初始化数据库
-```
-php artisan migrate
-```
+
+2.初始化数据库
+
+手动导入 [/database/install/stock.sql](/database/install/stock.sql)
+
 
 ## http服务
 
@@ -75,17 +76,23 @@ php artisan serve --port=8018 --host=0.0.0.0
 [http://127.0.0.1:8018](http://127.0.0.1:8018)
 
 
-
 ![img](./docs/img/login.png)
 
 用户名: admin 密码: admin
 
 ## 任务调度
 
-其中包括股票数据更新等
+定时更新股票,监控股票数据,消息通知服务
 
 ```
-php artisan schedule
+php artisan schedule:work
+```
+
+## 队列
+
+股票模拟交易服务
+```
+php artisan queue:work
 ```
 
 
