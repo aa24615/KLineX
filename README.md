@@ -64,8 +64,10 @@ php composer.phar install
 
 2.初始化数据库
 
-手动导入 [/database/install/stock.sql](/database/install/stock.sql)
+手动导入 [/storage/app/private/stock/2025-xx-xx-xx-xx-xx.zip](/storage/app/private/stock/)
 
+请自行解压并导入到您的mysql数据库中   
+数据库配置请参考 [.env.example](.env.example) 请拷贝 .env.example 文件为 .env 
 
 ## http服务
 
