@@ -15,7 +15,9 @@
         "tencentcloud/sms": "^3.0",
         "w7corp/easywechat": "^6.15",
         "zyan/stock-api": "^2.0",
-        "spatie/laravel-backup": "^9.2"
+        "spatie/laravel-backup": "^9.2",
+      "ext-zip": "*",
+        "guanguans/notify": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.5",

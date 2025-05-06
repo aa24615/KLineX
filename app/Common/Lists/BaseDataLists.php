@@ -18,6 +18,7 @@ abstract class BaseDataLists implements ListsInterface
     use ListsSortTrait;
     use ListsExcelTrait;
 
+
     public Request $request; //请求对象
 
     public int $pageNo; //页码

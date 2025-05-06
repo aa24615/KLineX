@@ -19,5 +19,21 @@ abstract class BaseAdminDataLists extends BaseDataLists
         $this->adminId = $this->request->attributes->get('adminId');
     }
 
+    /**
+     * @notes  设置支持排序字段
+     */
+    public function setSortFields(): array
+    {
+        return ['create_time' => 'create_time', 'id' => 'id'];
+    }
+
+    /**
+     * @notes  设置默认排序
+     */
+    public function setDefaultOrder(): array
+    {
+        return ['sort' => 'desc', 'id' => 'desc'];
+    }
+
 
 }
