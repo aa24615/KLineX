@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Common\Model\StockNotice;
+use App\Models\StockRecord;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -36,8 +37,9 @@ class ClearInvalidData extends Command
         DB::table('admin_session')->delete();
         DB::table('notice_setting')->delete();
         StockNotice::query()->delete();
+        StockRecord::query()->delete();
 
-
+        
 
         $this->info('清理完毕');
     }

@@ -14,3 +14,9 @@ Schedule::command('update:stock_list hk')->cron("*/10 9-12,13-16 * * 1-5")->runI
 
 //每晚6点将最新的股票拷贝到每天记录表中 (美股除外)
 Schedule::command('update:stock_record')->cron("1 18 * * 1-5")->runInBackground();
+
+
+
+
+//清理调试数据
+Schedule::command('telescope:prune --hours=1')->cron("1 */1 * * *")->runInBackground();

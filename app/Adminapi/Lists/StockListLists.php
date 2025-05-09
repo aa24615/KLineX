@@ -44,7 +44,8 @@ class StockListLists extends BaseAdminDataLists implements ListsSearchInterface
 
 
 
-    public function setSortFields(){
+    public function setSortFields(): array
+    {
         return [
             'id' => 'id',
             'symbol' => 'symbol',
@@ -67,7 +68,8 @@ class StockListLists extends BaseAdminDataLists implements ListsSearchInterface
         ];
     }
 
-    public function setDefaultOrder(){
+    public function setDefaultOrder(): array
+    {
         return ['percent' => 'desc'];
     }
 
