@@ -1103,6 +1103,66 @@ namespace App\Common\Model{
 	class StockList extends \Eloquent {}
 }
 
+namespace App\Common\Model{
+/**
+ * StockMonitor模型
+ * Class StockMonitor
+ *
+ * @package App\Common\Model
+ * @property int $id
+ * @property string|null $where 监控条件
+ * @property string|null $cycle 周期
+ * @property string|null $notice 通知
+ * @property int|null $status 启用状态
+ * @property int|null $complete 是否完成
+ * @property string|null $created_at
+ * @property string|null $updated_at
+ * @property string $image
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereComplete($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereCycle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereNotice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereWhere($value)
+ */
+	class StockMonitor extends \Eloquent {}
+}
+
+namespace App\Common\Model{
+/**
+ * StockNotice模型
+ * Class StockNotice
+ *
+ * @package App\Common\Model
+ * @property int $id
+ * @property string|null $name 名称
+ * @property string|null $type 通知类型，如email, dingtalk, wechat
+ * @property array<array-key, mixed>|null $recipient 接收者，如邮箱地址、钉钉机器人URL等
+ * @property string|null $content 通知内容模板
+ * @property int $status 是否启用
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $image
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereRecipient($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereUpdatedAt($value)
+ */
+	class StockNotice extends \Eloquent {}
+}
+
 namespace App\Common\Model\Tools{
 /**
  * 代码生成器-数据表字段信息模型

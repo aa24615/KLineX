@@ -41,6 +41,8 @@ class ConsoleOutputUtil
             echo $formatter->format("<{$style}>{$text}</>");
             echo PHP_EOL;
             Log::info($text);
+
+            unset($formatter);
         }
     }
 

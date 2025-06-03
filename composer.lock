@@ -8401,17 +8401,23 @@
         },
         {
             "name": "zyan/stock-api",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aa24615/stock-api.git",
-                "reference": "48084a9680cf00bef6038fb67e0d64ef0f7d3910"
+                "reference": "50961f34471f3c1b430975c4aa67ac138ddb65c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aa24615/stock-api/zipball/48084a9680cf00bef6038fb67e0d64ef0f7d3910",
-                "reference": "48084a9680cf00bef6038fb67e0d64ef0f7d3910",
-                "shasum": ""
+                "url": "https://api.github.com/repos/aa24615/stock-api/zipball/50961f34471f3c1b430975c4aa67ac138ddb65c2",
+                "reference": "50961f34471f3c1b430975c4aa67ac138ddb65c2",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "ext-curl": "*",
@@ -8445,9 +8451,9 @@
             ],
             "support": {
                 "issues": "https://github.com/aa24615/stock-api/issues",
-                "source": "https://github.com/aa24615/stock-api/tree/2.0.0"
+                "source": "https://github.com/aa24615/stock-api/tree/2.0.1"
             },
-            "time": "2025-02-20T12:22:11+00:00"
+            "time": "2025-05-22T15:50:25+00:00"
         }
     ],
     "packages-dev": [
