@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\UpdateStockRecordJobs;
 use App\Models\StockList;
 use App\Models\StockRecord;
 use App\Utils\ConsoleOutputUtil;
@@ -82,8 +83,9 @@ class StockRecordService
         $list = StockList::query()->select(['symbol'])->where('exchange','sz')->orderByDesc('id')->get();
          ConsoleOutputUtil::info('更新: ' . count($list) . ' 个');
         foreach ($list as $val){
-            $this->updateSymbolAll($val->symbol);
-            echo $val->symbol . "\n";
+            //$this->updateSymbolAll($val->symbol);
+            //echo $val->symbol . "\n";
+            UpdateStockRecordJobs::dispatch($val->symbol);
         }
     }
 }

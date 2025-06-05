@@ -31,9 +31,10 @@ class AppTest extends Command
     {
 
 
-        //        $s = new StockRecordService();
-//        $s->updateAll();
+        $s = new StockRecordService();
+        $s->updateAll();
 
+        return;
 
 
         $T = new StockTimingAnalysisService();
@@ -49,8 +50,8 @@ class AppTest extends Command
         ];
 
         foreach ($list as $symbol){
-            $T->analyzeTiming($symbol);
-            ConsoleOutputUtil::info('=================================================');
+//            $T->analyzeTiming($symbol);
+//            ConsoleOutputUtil::info('=================================================');
         }
 
 //        $passwordSalt = Config::get('project.unique_identification');

@@ -10,7 +10,7 @@ class StockTimingAnalysisService
 {
 
     //涨幅
-    protected int $percent = 20;
+    protected int $percent = 100;
     //最大交易数
     protected int $max_sell_count = 2;
     protected int $equity = 10000;
