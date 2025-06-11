@@ -10,9 +10,9 @@ class StockTimingAnalysisService
 {
 
     //涨幅
-    protected int $percent = 100;
+    protected int $percent = 50;
     //最大交易数
-    protected int $max_sell_count = 2;
+    protected int $max_sell_count = 4;
     protected int $equity = 10000;
     //历史数据
     protected array $records;
@@ -32,7 +32,7 @@ class StockTimingAnalysisService
                 'date'
             ])
             ->where('symbol', $symbol)
-            ->where('date', '>=', '2024-01-01')
+            ->where('date', '>=', '2025-01-01')
             ->orderBy('date', 'asc')
             ->get();
 
@@ -79,7 +79,7 @@ class StockTimingAnalysisService
                 $market_value = $equity;
                 $equity = 0;
 
-                ConsoleOutputUtil::info($date . ' 蒙眼买: ' . $buy);
+                ConsoleOutputUtil::info($date . ' 直接买入: ' . $buy);
                 $list[] = [
                     'date' => $date,
                     'current' => $current,
@@ -144,15 +144,25 @@ class StockTimingAnalysisService
         ConsoleOutputUtil::info("当前价格 {$date} {$current}");
         ConsoleOutputUtil::info("结果 现金: {$equity} 市值(未卖): {$market_value}");
 
+
+        $dec = 0;
+        $inc = 0;
+
         if ($market_value > 0) {
             if ($current > $buy) {
-                $fee = ($equity - $this->equity);
-                $profit = round($fee / $this->equity * 100, 2);
+                $fee = ($current  -  $buy);
+                $profit = round($fee / $buy * 100, 2);
+
+                $fee = $market_value*$profit;
+
+                $inc = $profit;
 
                 ConsoleOutputUtil::info("利润: {$profit}% 金额: {$fee}");
             } else {
                 $fee = ($buy - $current);
                 $profit = round($fee / $current * 100, 2);
+
+                $dec = $profit;
 
                 $f = $market_value * $percent / 100;
                 ConsoleOutputUtil::info("亏损: {$profit}%  金额: {$f}");
@@ -161,8 +171,19 @@ class StockTimingAnalysisService
             $fee = ($equity - $this->equity);
             $profit = round($fee / $this->equity * 100, 2);
 
+            $inc = $profit;
+
+
             ConsoleOutputUtil::info("利润: {$profit}% 金额: {$fee}");
         }
+
+
+
+
+        return [
+            'inc' => $inc,
+            'dec' => $dec,
+        ];
     }
 
     /**

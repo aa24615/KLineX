@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\StockList;
 use App\Services\StockRecordService;
 use App\Services\StockTimingAnalysisService;
 use App\Utils\ConsoleOutputUtil;
@@ -31,28 +32,50 @@ class AppTest extends Command
     {
 
 
-        $s = new StockRecordService();
-        $s->updateAll();
-
-        return;
+//        $s = new StockRecordService();
+//        $s->updateAll();
+//
+//        return;
 
 
         $T = new StockTimingAnalysisService();
 
-        $list = [
-            'SZ300613',
-            'SZ002484',
-            'SZ300170',
-            'SZ002881',
-            'SZ003021',
-            'SZ302132',
-            'SZ200055'
-        ];
+        $list = StockList::query()
+            ->select([
+                'symbol',
+                'name'
+            ])
+            ->where('market_capital','>',100*100000000)
+            ->where('exchange','sz')
+            ->orderByRaw('rand()')
+            ->limit(100)
+            ->get();
 
-        foreach ($list as $symbol){
-//            $T->analyzeTiming($symbol);
-//            ConsoleOutputUtil::info('=================================================');
+
+        $dec = 0;
+        $inc = 0;
+
+        foreach ($list as $key=>$item){
+
+            $symbol = $item->symbol;
+            $name = $item->name;
+
+            ConsoleOutputUtil::info("{$key}---------------------$name------------------------");
+
+            $result = $T->analyzeTiming($symbol);
+
+            $dec += $result['dec'] ?? 0;
+            $inc += $result['inc'] ?? 0;
+
+
         }
+
+
+        ConsoleOutputUtil::info("--------------------------------------------------");
+        echo "总亏损: {$dec}% 总盈利: {$inc}%";
+
+        echo PHP_EOL;
+        echo PHP_EOL;
 
 //        $passwordSalt = Config::get('project.unique_identification');
 //

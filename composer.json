@@ -17,7 +17,8 @@
         "zyan/stock-api": "^2.0",
         "spatie/laravel-backup": "^9.2",
       "ext-zip": "*",
-        "guanguans/notify": "*"
+        "guanguans/notify": "*",
+        "laravel/horizon": "^5.31"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.5",
