@@ -39,16 +39,19 @@ class AppTest extends Command
 
 
         $T = new StockTimingAnalysisService();
+        $T->setPercent(100);
+        $T->setMaxSellCount(10);
+
 
         $list = StockList::query()
             ->select([
                 'symbol',
                 'name'
             ])
-            ->where('market_capital','>',100*100000000)
+            ->where('market_capital','<',100*100000000)
             ->where('exchange','sz')
             ->orderByRaw('rand()')
-            ->limit(100)
+            ->limit(10)
             ->get();
 
 

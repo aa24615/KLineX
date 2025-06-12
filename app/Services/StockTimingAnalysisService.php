@@ -10,12 +10,30 @@ class StockTimingAnalysisService
 {
 
     //涨幅
-    protected int $percent = 50;
+    protected int $percent = 2;
     //最大交易数
-    protected int $max_sell_count = 4;
+    protected int $max_sell_count = 10;
     protected int $equity = 10000;
     //历史数据
     protected array $records;
+
+    /**
+     * @param int $percent
+     */
+    public function setPercent(int $percent): void
+    {
+        $this->percent = $percent;
+    }
+
+    /**
+     * @param int $max_sell_count
+     */
+    public function setMaxSellCount(int $max_sell_count): void
+    {
+        $this->max_sell_count = $max_sell_count;
+    }
+
+
 
     /**
      * 股票分析
