@@ -9,7 +9,7 @@ services:
     volumes:
       - "./mysql/data:/var/lib/mysql"
       - "./mysql/mysqld:/var/run/mysqld"
-      - "./mysql/log:/var/log/"
+      - "./mysql/log:/var/log/mysql"
       - "./mysql/my.cnf:/etc/my.cnf"
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -18,6 +18,8 @@ services:
     privileged: true
     networks:
       - stock_network
+    command:
+        - --mysql-native-password=on
   redis:
     image: "registry.cn-hangzhou.aliyuncs.com/php127/redis:6.2.5"
     ports:
