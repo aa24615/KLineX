@@ -20,3 +20,7 @@ Schedule::command('update:stock_record')->cron("1 18 * * 1-5")->runInBackground(
 
 //清理调试数据
 Schedule::command('telescope:prune --hours=1')->cron("1 */1 * * *")->runInBackground();
+
+
+//每天备份
+Schedule::command('backup:run')->cron("1 1 * * *")->runInBackground();

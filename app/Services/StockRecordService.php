@@ -80,7 +80,7 @@ class StockRecordService
 
     public function updateAll()
     {
-        $list = StockList::query()->select(['symbol'])->where('exchange','sz')->orderByDesc('id')->get();
+        $list = StockList::query()->select(['symbol'])->orderByDesc('id')->get();
          ConsoleOutputUtil::info('更新: ' . count($list) . ' 个');
         foreach ($list as $val){
             UpdateStockRecordJobs::dispatch($val->symbol);
