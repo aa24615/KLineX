@@ -32,13 +32,21 @@ class AppTest extends Command
     {
 
 
+        $T = new StockTimingAnalysisService();
+
+        $T->create();
+
+
+
+
+        exit;
 //        $s = new StockRecordService();
 //        $s->updateAll();
 //
 //        return;
 
 
-        $T = new StockTimingAnalysisService();
+
         $T->setPercent(100);
         $T->setMaxSellCount(10);
 

@@ -20,7 +20,29 @@ use Illuminate\Database\Eloquent\Casts\AsCollection;
 /**
  * StockNotice模型
  * Class StockNotice
+ *
  * @package App\Common\Model
+ * @property int $id
+ * @property string|null $name 名称
+ * @property string|null $type 通知类型，如email, dingtalk, wechat
+ * @property array<array-key, mixed>|null $recipient 接收者，如邮箱地址、钉钉机器人URL等
+ * @property string|null $content 通知内容模板
+ * @property int $status 是否启用
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $image
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereRecipient($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class StockNotice extends BaseModel
 {

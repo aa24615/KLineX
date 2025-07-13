@@ -2,228 +2,97 @@
 
 namespace App\Services;
 
+use App\Jobs\StockTimingAnalysisJobs;
+use App\Jobs\StockTimingAnalysisTaskJobs;
 use App\Models\StockRecord;
+use App\Models\StockTimingAnalysis;
+use App\Models\StockTimingAnalysisList;
+use App\Models\StockTimingAnalysisTask;
 use App\Utils\ConsoleOutputUtil;
+use Illuminate\Database\Eloquent\Model;
+use function Symfony\Component\HttpKernel\Log\record;
 use function Symfony\Component\VarExporter\Internal\f;
 
 class StockTimingAnalysisService
 {
 
-    //涨幅
-    protected int $percent = 2;
-    //最大交易数
-    protected int $max_sell_count = 10;
-    protected int $equity = 10000;
-    //历史数据
-    protected array $records;
 
-    /**
-     * @param int $percent
-     */
-    public function setPercent(int $percent): void
+
+
+    public function create()
     {
-        $this->percent = $percent;
+
+        $model = new StockTimingAnalysis();
+
+        $model->where = json_encode([
+            ['market_capital' ,'>', 1000*100000000]
+        ]);
+        $model->name = '市值大于1000亿的股票分析';
+        $model->start_date = '2025-01-01';
+        $model->sample_number = 10;
+        $model->symbol_rand_number = 10;
+        $model->percent = 10;
+        $model->max_sell_count = 2;
+        $model->equity = 100000;
+
+        $model->save();
+
+        StockTimingAnalysisJobs::dispatchSync($model->id);
     }
 
-    /**
-     * @param int $max_sell_count
-     */
-    public function setMaxSellCount(int $max_sell_count): void
+    public function createTask($aid)
     {
-        $this->max_sell_count = $max_sell_count;
+
+        $model = StockTimingAnalysis::query()->where('id',$aid)->first();
+
+        for ($i = 0; $i < $model->sample_number; $i++) {
+            $task = new StockTimingAnalysisTask();
+            $task->pid = $aid;
+            $task->save();
+
+            StockTimingAnalysisTaskJobs::dispatchSync($task->id);
+        }
+
+        return true;
     }
 
-
-
-    /**
-     * 股票分析
-     *
-     * @param string $symbol 股票代码
-     * @return array
-     */
-    public function analyzeTiming($symbol)
+    public function createList(int $task_id)
     {
-        // 获取指定天数内的股票记录
-        $records = StockRecord::query()
-            ->select([
-                'current',
-                'date'
-            ])
-            ->where('symbol', $symbol)
-            ->where('date', '>=', '2025-01-01')
-            ->orderBy('date', 'asc')
+
+
+        $data = StockTimingAnalysisTask::query()
+            ->where('id', $task_id)
+            ->with('analysis')
+            ->first();
+
+        $equity = $data->equity;
+        $symbol_rand_number = $data->analysis->symbol_rand_number;
+        $symbol_equity = round($equity/$symbol_rand_number,2);
+
+
+        $symbols = StockRecord::query()
+            ->select(['symbol'])
+            ->where('market_capital', '>', 1000*100000000)
+            ->where('market', '=', 'CN')
+            ->inRandomOrder()
+            ->limit($symbol_rand_number)
             ->get();
 
-        $this->records = $records->toArray();
 
-        if ($records->isEmpty()) {
-            return ['buy' => null, 'sell' => null];
+        foreach ($symbols as $val){
+
+            $model = new StockTimingAnalysisList();
+            $model->pid = $task_id;
+            $model->symbol = $val->symbol;
+            $model->equity = $symbol_equity;
+            $model->balance = $symbol_equity;
+            $model->save();
+
         }
 
-        $list = [];
-
-        $percent = $this->percent;
-
-        //买入价格
-        $buy = 0;
-        //卖出价格
-        $sell = 0;
-
-        //卖出次数
-        $sell_count = 0;
-        //股本
-        $equity = $this->equity;
-        //市值
-        $market_value = 0;
-
-        ConsoleOutputUtil::info('模拟交易: ' . $symbol . ' 幅度: ' . $percent . '% 股本(现金):' . $equity);
-
-        //init
-
-        // 简单的低买高卖策略
-        foreach ($records as $index => $record) {
-            $current = $record->current;
-            $date = $record->date;
-
-            //超过最大卖出次数 不再交易
-            if ($sell_count >= $this->max_sell_count) {
-                ConsoleOutputUtil::info('卖出次数超过最大限制:' . $this->max_sell_count);
-                break;
-            }
-
-            if (empty($list)) {
-                $buy = $current; // 第一次买入价格
-                $sell = $buy * ((100 + $percent) / 100);
-                $market_value = $equity;
-                $equity = 0;
-
-                ConsoleOutputUtil::info($date . ' 直接买入: ' . $buy);
-                $list[] = [
-                    'date' => $date,
-                    'current' => $current,
-                    'type' => 'buy',
-                    'day' => 0,
-                ];
-                continue;
-            }
-
-            $end = $list[count($list) - 1];
-
-            $list[count($list) - 1]['day'] += 1;
-
-            $type = $end['type'];
-
-            switch ($type) {
-                case 'buy':
-                    if ($current >= $sell) {
-                        $list[] = [
-                            'date' => $date,
-                            'current' => $current,
-                            'type' => 'sell',
-                            'day' => 0,
-                        ];
-                        ConsoleOutputUtil::info($date . ' 卖出: ' . $current . ' 持股天数: ' . $end['day']);
-
-                        $sell_count++;
-
-                        $equity = $market_value * ((100 + $percent) / 100);
-                        $market_value = 0;
-                    }
-                    break;
-                case 'sell':
-
-                    // 动态计算买入价格
-                    $isBuy = $this->calculateDynamicBuyPrice($index, $current);
-
-                    if ($isBuy) {
-                        $list[] = [
-                            'date' => $date,
-                            'current' => $current,
-                            'type' => 'buy',
-                            'day' => 0,
-                        ];
-
-                        ConsoleOutputUtil::info($date . ' 动态买入: ' . $current);
-
-                        $buy = $current;
-                        $sell = $buy * ((100 + $percent) / 100);
-
-                        $market_value = $equity;
-                        $equity = 0;
-                    }
-                    break;
-                default:
-            }
-        }
-
-        $market_value = round($market_value, 2);
-        $equity = round($equity, 2);
-
-        ConsoleOutputUtil::info("当前价格 {$date} {$current}");
-        ConsoleOutputUtil::info("结果 现金: {$equity} 市值(未卖): {$market_value}");
-
-
-        $dec = 0;
-        $inc = 0;
-
-        if ($market_value > 0) {
-            if ($current > $buy) {
-                $fee = ($current  -  $buy);
-                $profit = round($fee / $buy * 100, 2);
-
-                $fee = $market_value*$profit;
-
-                $inc = $profit;
-
-                ConsoleOutputUtil::info("利润: {$profit}% 金额: {$fee}");
-            } else {
-                $fee = ($buy - $current);
-                $profit = round($fee / $current * 100, 2);
-
-                $dec = $profit;
-
-                $f = $market_value * $percent / 100;
-                ConsoleOutputUtil::info("亏损: {$profit}%  金额: {$f}");
-            }
-        } else {
-            $fee = ($equity - $this->equity);
-            $profit = round($fee / $this->equity * 100, 2);
-
-            $inc = $profit;
-
-
-            ConsoleOutputUtil::info("利润: {$profit}% 金额: {$fee}");
-        }
-
-
-
-
-        return [
-            'inc' => $inc,
-            'dec' => $dec,
-        ];
+        return true;
     }
 
-    /**
-     * 动态计算买入价格
-     *
-     * @param float $current 当前价格
-     * @return float 动态买入价格
-     */
-    private function calculateDynamicBuyPrice($index, $current)
-    {
-        if ($index < 5) {
-            return false;
-        }
 
-        // 取5天前价格
-        $price = $this->records[$index - 5]['current'];
 
-        // 如果跌幅大于某个值 则买入
-        if (100 - ($current / $price * 100) >= $this->percent) {
-            return true;
-        }
-
-        return false;
-    }
 }
