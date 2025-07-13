@@ -11,14 +11,12 @@ use App\Models\StockTimingAnalysisList;
 use App\Models\StockTimingAnalysisTask;
 use App\Services\Analysis\TimingService;
 use App\Utils\ConsoleOutputUtil;
-use Illuminate\Database\Eloquent\Model;
-use function Symfony\Component\HttpKernel\Log\record;
-use function Symfony\Component\VarExporter\Internal\f;
+use Illuminate\Support\Facades\Redis;
 
 class StockTimingAnalysisService
 {
 
-    public function create()
+    public function create($percent)
     {
         $model = new StockTimingAnalysis();
 
@@ -29,13 +27,13 @@ class StockTimingAnalysisService
 
         $model->name = '市值大于100亿的股票分析';
         //开始分析时间
-        $model->start_date = '2025-01-01';
+        $model->start_date = '2024-01-01';
         //分析样本组数
-        $model->sample_number = 100;
+        $model->sample_number = 10;
         //随机抽几个股票
         $model->symbol_rand_number = 10;
         //涨到多少卖掉
-        $model->percent = 50;
+        $model->percent = $percent;
         //最大交易次数
         $model->max_sell_count = 2;
         //总股本
@@ -59,7 +57,7 @@ class StockTimingAnalysisService
 
             ConsoleOutputUtil::info("创建分析组:" . $task->id . " 随机抽取" . $model->symbol_rand_number . "只股票");
 
-
+            StockTimingAnalysisTaskJobs::dispatch($task->id);
         }
 
         return true;
@@ -67,7 +65,11 @@ class StockTimingAnalysisService
 
     public function countTask($id)
     {
-        $model = StockTimingAnalysisTask::query()->where('id', $id)->first();
+        $model = StockTimingAnalysisTask::query()->with('analysis')->where('id', $id)->first();
+
+        $key = 'task:'.$model->pid;
+
+        Redis::incr($key,1);
 
         $list = StockTimingAnalysisList::query()
             ->where('pid', $id)
@@ -104,6 +106,26 @@ class StockTimingAnalysisService
         $model->total_margin = round(($equity_amount / $equity) * 100 - 100, 2);
         $model->status = 1;
         $model->save();
+
+        if(Redis::incr($key,1)>=$model->analysis->sample_number){
+            $this->countAnalysis($id);
+        }
+    }
+
+    public function countAnalysis(int $id){
+
+        $model = StockTimingAnalysis::query()->where('id',$id)->first();
+
+        $list = StockTimingAnalysisTask::query()->where('pid',$id)->get();
+
+        $total_fee = 0;
+        foreach ($list as $item){
+            $total_fee += $item->total_fee;
+        }
+
+        $model->total_fee = $total_fee;
+        $model->save();
+
     }
 
     public function createList(int $task_id)
@@ -142,7 +164,7 @@ class StockTimingAnalysisService
         }
 
 
-        $this->countTask($task_id);
+
 
         return true;
     }
@@ -156,6 +178,11 @@ class StockTimingAnalysisService
             ->with('analysisTask.analysis')
             ->first();
 
+        $key = 'analysis:' . $data->pid;
+
+        Redis::incr($key,1);
+        Redis::expire($key,    86400);
+
         $t = new TimingService();
         $t->setEquity($data->equity);
         $t->setPercent($data->analysisTask->analysis->percent);
@@ -168,6 +195,11 @@ class StockTimingAnalysisService
         $data->save();
 
         ConsoleOutputUtil::br();
+
+        //结整统计上游
+        if(Redis::get($key)>=$data->analysisTask->analysis->symbol_rand_number){
+            $this->countTask($data->pid);
+        }
     }
 
 }

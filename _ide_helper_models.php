@@ -1129,6 +1129,7 @@ namespace App\Common\Model{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockMonitor whereWhere($value)
+ * @mixin \Eloquent
  */
 	class StockMonitor extends \Eloquent {}
 }
@@ -1159,6 +1160,7 @@ namespace App\Common\Model{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockNotice whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class StockNotice extends \Eloquent {}
 }
@@ -1514,5 +1516,124 @@ namespace App\Models{
  * @mixin \Eloquent
  */
 	class StockRecord extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string|null $name 名称
+ * @property string|null $where 条件
+ * @property string|null $start_date 开始日期
+ * @property int|null $sample_number 分析样本组数
+ * @property int|null $symbol_rand_number 随机股票数
+ * @property int|null $percent 涨幅
+ * @property int|null $max_sell_count 最大卖出次数
+ * @property int|null $equity 股本
+ * @property int|null $profit_fee 利润金额
+ * @property int|null $profit_margin 利润率
+ * @property int|null $loss_fee 亏损金额
+ * @property int|null $loss_margin 亏损率
+ * @property int|null $total_fee 总盈亏金额
+ * @property int|null $total_margin 总盈亏率
+ * @property int|null $status 状态
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereEquity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereLossFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereLossMargin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereMaxSellCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis wherePercent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereProfitFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereProfitMargin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereSampleNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereSymbolRandNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereTotalFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereTotalMargin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereWhere($value)
+ * @mixin \Eloquent
+ */
+	class StockTimingAnalysis extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int|null $pid 父级id
+ * @property string|null $symbol 股票代码
+ * @property int|null $equity 股本
+ * @property int|null $balance 余额
+ * @property int|null $market 市值
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\StockTimingAnalysisTask|null $analysisTask
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList whereBalance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList whereEquity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList whereMarket($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList wherePid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList whereSymbol($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisList whereUpdatedAt($value)
+ */
+	class StockTimingAnalysisList extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int|null $pid 父级id
+ * @property int|null $symbol_rand_number 随机股票数
+ * @property int|null $percent 涨幅
+ * @property int|null $max_sell_count 最大卖出次数
+ * @property int|null $equity 股本
+ * @property int|null $profit_fee 利润金额
+ * @property int|null $profit_margin 利润率
+ * @property int|null $loss_fee 亏损金额
+ * @property int|null $loss_margin 亏损率
+ * @property int|null $total_fee 总盈亏金额
+ * @property int|null $total_margin 总盈亏率
+ * @property int|null $status 状态
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereEquity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereLossFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereLossMargin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereMaxSellCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask wherePercent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask wherePid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereProfitFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereProfitMargin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereSymbolRandNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereTotalFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereTotalMargin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @property-read \App\Models\StockTimingAnalysis|null $analysis
+ */
+	class StockTimingAnalysisTask extends \Eloquent {}
 }
 
