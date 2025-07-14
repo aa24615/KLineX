@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property int|null $pid 父级id
@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereTotalFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereTotalMargin($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysisTask whereUpdatedAt($value)
+ * @property-read \App\Models\StockTimingAnalysis|null $analysis
  * @mixin \Eloquent
  */
 class StockTimingAnalysisTask extends Model

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 /**
  * 
  *
@@ -16,10 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $percent 涨幅
  * @property int|null $max_sell_count 最大卖出次数
  * @property int|null $equity 股本
- * @property int|null $profit_fee 利润金额
- * @property int|null $profit_margin 利润率
- * @property int|null $loss_fee 亏损金额
- * @property int|null $loss_margin 亏损率
+ * @property int|null $total_min_fee 最小盈亏金额
+ * @property int|null $total_min_margin 最小盈亏率
+ * @property int|null $total_max_fee 最大盈亏金额
+ * @property int|null $total_max_margin 最大盈亏率
  * @property int|null $total_fee 总盈亏金额
  * @property int|null $total_margin 总盈亏率
  * @property int|null $status 状态
@@ -31,19 +32,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereEquity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereLossFee($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereLossMargin($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereMaxSellCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis wherePercent($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereProfitFee($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereProfitMargin($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereSampleNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereStartDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereSymbolRandNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereTotalFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereTotalMargin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereTotalMaxFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereTotalMaxMargin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereTotalMinFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereTotalMinMargin($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|StockTimingAnalysis whereWhere($value)
  * @mixin \Eloquent

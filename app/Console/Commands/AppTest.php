@@ -35,10 +35,12 @@ class AppTest extends Command
         $T = new StockTimingAnalysisService();
 
 
-        for ($i = 1; $i < 10; $i++) {
+        for ($i = 1; $i < 2; $i++) {
 
-            $percent = $i*10;
-            $T->create($percent);
+//            $percent = $i*10;
+            $percent = 10;
+            $market_capital = 1*10;
+            $T->create($percent,$market_capital);
         }
 
 

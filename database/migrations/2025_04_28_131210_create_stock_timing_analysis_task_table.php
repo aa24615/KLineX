@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->integer('pid')->nullable()->default(0)->comment('父级id');
 
-            $table->integer('equity')->nullable()->default(0)->comment('股本');
 
             $table->integer('profit_fee')->nullable()->default(0)->comment('利润金额');
             $table->integer('profit_margin')->nullable()->default(0)->comment('利润率');
 
             $table->integer('loss_fee')->nullable()->default(0)->comment('亏损金额');
             $table->integer('loss_margin')->nullable()->default(0)->comment('亏损率');
+
 
             $table->integer('total_fee')->nullable()->default(0)->comment('总盈亏金额');
             $table->integer('total_margin')->nullable()->default(0)->comment('总盈亏率');

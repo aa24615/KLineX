@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Redis;
 class StockTimingAnalysisService
 {
 
-    public function create($percent)
+    public function create($percent,$market_capital)
     {
         $model = new StockTimingAnalysis();
 
         //条件
         $model->where = json_encode([
-            ['market_capital', '>', 100 * 100000000],
+            ['market_capital', '>', $market_capital * 100000000],
         ]);
 
         $model->name = '市值大于100亿的股票分析';
@@ -65,11 +65,15 @@ class StockTimingAnalysisService
 
     public function countTask($id)
     {
+
+        ConsoleOutputUtil::info('countTask');
+
         $model = StockTimingAnalysisTask::query()->with('analysis')->where('id', $id)->first();
 
         $key = 'task:'.$model->pid;
 
         Redis::incr($key,1);
+        Redis::expire($key,    86400);
 
         $list = StockTimingAnalysisList::query()
             ->where('pid', $id)
@@ -105,26 +109,44 @@ class StockTimingAnalysisService
         $model->total_fee = $equity_amount - $equity;
         $model->total_margin = round(($equity_amount / $equity) * 100 - 100, 2);
         $model->status = 1;
-        $model->save();
 
-        if(Redis::incr($key,1)>=$model->analysis->sample_number){
-            $this->countAnalysis($id);
+        if(!$model->save()){
+            ConsoleOutputUtil::error('更新失败');
+        }
+
+
+        if(Redis::get($key)>=$model->analysis->sample_number){
+            $this->countAnalysis($model->pid);
         }
     }
 
     public function countAnalysis(int $id){
 
+        ConsoleOutputUtil::info('countAnalysis');
+
+
         $model = StockTimingAnalysis::query()->where('id',$id)->first();
 
         $list = StockTimingAnalysisTask::query()->where('pid',$id)->get();
+
+        $listArray = $list->toArray();
+        $total_fees = array_column($listArray,'total_fee');
+
+        $min_fee = min($total_fees);
+        $max_fee = max($total_fees);
 
         $total_fee = 0;
         foreach ($list as $item){
             $total_fee += $item->total_fee;
         }
 
-        $model->total_fee = $total_fee;
-        $model->save();
+        $model->total_fee = $total_fee/count($listArray);
+        $model->total_min_fee = $min_fee;
+        $model->total_max_fee = $max_fee;
+
+        if(!$model->save()){
+            ConsoleOutputUtil::error('更新失败');
+        }
 
     }
 
@@ -198,6 +220,8 @@ class StockTimingAnalysisService
 
         //结整统计上游
         if(Redis::get($key)>=$data->analysisTask->analysis->symbol_rand_number){
+
+
             $this->countTask($data->pid);
         }
     }

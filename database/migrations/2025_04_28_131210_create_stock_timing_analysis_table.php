@@ -22,13 +22,14 @@ return new class extends Migration
             $table->integer('percent')->nullable()->default(0)->comment('涨幅');
 
             $table->integer('max_sell_count')->nullable()->default(0)->comment('最大卖出次数');
-            $table->integer('equity')->nullable()->default(0)->comment('股本');
+            $table->integer('equity')->nullable()->default(0)->comment('总股本');
 
-            $table->integer('profit_fee')->nullable()->default(0)->comment('利润金额');
-            $table->integer('profit_margin')->nullable()->default(0)->comment('利润率');
+            $table->integer('total_min_fee')->nullable()->default(0)->comment('最小盈亏金额');
+            $table->integer('total_min_margin')->nullable()->default(0)->comment('最小盈亏率');
 
-            $table->integer('loss_fee')->nullable()->default(0)->comment('亏损金额');
-            $table->integer('loss_margin')->nullable()->default(0)->comment('亏损率');
+
+            $table->integer('total_max_fee')->nullable()->default(0)->comment('最大盈亏金额');
+            $table->integer('total_max_margin')->nullable()->default(0)->comment('最大盈亏率');
 
             $table->integer('total_fee')->nullable()->default(0)->comment('总盈亏金额');
             $table->integer('total_margin')->nullable()->default(0)->comment('总盈亏率');
