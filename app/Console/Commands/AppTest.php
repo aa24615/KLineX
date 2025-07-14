@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\StockList;
+use App\Models\StockRecord;
 use App\Services\StockRecordService;
 use App\Services\StockTimingAnalysisService;
 use App\Utils\ConsoleOutputUtil;
@@ -35,12 +36,15 @@ class AppTest extends Command
         $T = new StockTimingAnalysisService();
 
 
-        for ($i = 1; $i < 2; $i++) {
+        for ($i = 1; $i < 100; $i++) {
 
-//            $percent = $i*10;
-            $percent = 10;
-            $market_capital = 1*10;
-            $T->create($percent,$market_capital);
+            $market_capital = $i*10;
+
+            for ($j = 1; $j < 10; $j++) {
+                $percent = 10 * $j;
+                $T->create($percent,$market_capital);
+            }
+
         }
 
 
