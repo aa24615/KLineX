@@ -3,7 +3,7 @@ version: '3'
 name: "stock"
 services:
   mysql:
-    image: "docker.cnb.cool/php127/docker/mysql:8.4.3-oracle"
+    image: "mysql:8.4.3-oracle"
     ports:
       - "3307:3306"
     volumes:
@@ -21,7 +21,7 @@ services:
     command:
         - --mysql-native-password=on
   redis:
-    image: "registry.cn-hangzhou.aliyuncs.com/php127/redis:6.2.5"
+    image: "redis:6.2.5"
     ports:
       - "6380:6379"
     volumes:
@@ -35,7 +35,7 @@ services:
     networks:
       - stock_network
   php:
-    image: "docker.cnb.cool/php127/docker/php:8.4-cli-alpine"
+    image: docker.cnb.cool/php127/docker/php:8.4-cli-alpine
     restart: always
     privileged: true
     environment:

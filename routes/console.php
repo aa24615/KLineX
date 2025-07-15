@@ -23,4 +23,4 @@ Schedule::command('telescope:prune --hours=1')->cron("1 */1 * * *")->runInBackgr
 
 
 //每天备份
-Schedule::command('backup:run')->cron("1 1 * * *")->runInBackground();
+//Schedule::command('backup:run')->cron("1 1 * * *")->runInBackground();

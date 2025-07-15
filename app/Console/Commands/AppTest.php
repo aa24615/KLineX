@@ -36,15 +36,17 @@ class AppTest extends Command
         $T = new StockTimingAnalysisService();
 
 
-        for ($i = 1; $i < 100; $i++) {
+        // 预先计算循环参数
+        $marketCapitals = range(10, 10000, 10);  // 10, 20, ..., 990
+        $percents = range(10, 10, 10);        // 10, 20, ..., 90
+        $maxSellCounts = range(1, 1, 1);      // 1, 2, ..., 9
 
-            $market_capital = $i*10;
-
-            for ($j = 1; $j < 10; $j++) {
-                $percent = 10 * $j;
-                $T->create($percent,$market_capital);
+        foreach ($marketCapitals as $market_capital) {
+            foreach ($percents as $percent) {
+                foreach ($maxSellCounts as $max_sell_count) {
+                    $T->create($percent, $market_capital, $max_sell_count);
+                }
             }
-
         }
 
 
